@@ -1,0 +1,9 @@
+altgraph==0.17.4
+Cambia-hash==1.0.0
+importlib-metadata==7.1.0
+packaging==24.0
+pyinstaller==6.6.0
+pyinstaller-hooks-contrib==2024.4
+python-dotenv==1.0.1
+python-gettext==5.0
+zipp==3.18.1
