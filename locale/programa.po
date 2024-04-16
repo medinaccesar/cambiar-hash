@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-16 20:41+0200\n"
+"PO-Revision-Date: 2024-04-16 20:53+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
+
+#: cambiarhash.py:26
+msgid "Se ejecuta en modo consola."
+msgstr "Running in console mode."
+
+#: cambiarhash.py:33 cambiarhash.py:59
+msgid "«Hash» del archivo:"
+msgstr "Hash of the file:"
+
+#: cambiarhash.py:37
+msgid "El «hash» del archivo se ha cambiado correctamente."
+msgstr "The hash of the file has been changed successfully."
+
+#: cambiarhash.py:38
+msgid "Nuevo «hash» del archivo:"
+msgstr "New hash of the file:"
+
+#: cambiarhash.py:45
+msgid "«Hash» del archivo original:"
+msgstr "Hash of the original file:"
+
+#: cambiarhash.py:51
+msgid "Nombre del archivo duplicado:"
+msgstr "Name of the duplicate file:"
+
+#: cambiarhash.py:52
+msgid "«Hash» del archivo duplicado:"
+msgstr "Hash of the duplicate file:"
+
+#: cambiarhash.py:61
+msgid "No se especificó ninguna opción"
+msgstr "No option was specified"
+
+#: cambiarhash.py:70 cambiarhash.py:72 cambiarhash.py:74
+msgid "ARCHIVO"
+msgstr "FILE"
+
+#: cambiarhash.py:70 
+msgid "Cambia al vuelo el «hash» del archivo"
+msgstr "Changes the hash of the file on the fly"
+
+#: cambiarhash.py:72 
+msgid "Crea un nuevo archivo pero con distinto «hash»"
+msgstr "Creates a new file but with a different hash"
+
+#: cambiarhash.py:74 
+msgid "Calcula el «hash» del archivo"
+msgstr "Calculates the hash of the file"
+
+#: cambiarhash.py:76
+msgid "Se ejecuta el entorno gráfico"
+msgstr "The graphical environment is running"
+
+#: cambiarhash.py:78
+msgid "Muestra la versión del programa"
+msgstr "Displays the version of the program"
+
+#: utils/barra_progreso.py:8
+msgid "Progreso"
+msgstr "Progress"
+
+#: utils/barra_progreso.py:9
+msgid "Completo"
+msgstr "Complete"
+
+#: utils/espannol_string_argparse.py:13
+msgid "Uso: "
+msgstr "Usage: "
+
+#: utils/espannol_string_argparse.py:14
+msgid "argumentos opcionales"
+msgstr "optional arguments"
+
+#: utils/espannol_string_argparse.py:15
+msgid "muestra este mensaje de ayuda y sale"
+msgstr "shows this help message and exits"
+
+#: utils/espannol_string_argparse.py:16
+msgid "argumentos posicionales"
+msgstr "positional arguments"
+
+#: utils/espannol_string_argparse.py:17
+#, python-format
+msgid "los siguientes argumentos son requeridos: %s"
+msgstr "the following arguments are required: %s"
+
+#: utils/espannol_string_argparse.py:18
+msgid "muestra la versión del programa y sale"
+msgstr "shows the program version and exits"
+
+#: utils/espannol_string_argparse.py:19
+msgid "se espera un valor para el parámetro"
+msgstr "a value is expected for the parameter"
+
+#: utils/espannol_string_argparse.py:20
+msgid "se espera al menos un valor para el parámetro"
+msgstr "at least one value is expected for the parameter"
