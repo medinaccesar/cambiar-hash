@@ -112,7 +112,10 @@ IDIOMA = 'pt'
 
 # Ejecutables para linux ubuntu y windows
 
-Próximanente....
+En la carpeta «dist» próximanente....
+
+# Uso de los ejecutables
+
 
 * **Cambiar el «hash» de un archivo (linux):**
 ```
