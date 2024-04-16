@@ -1,5 +1,4 @@
 altgraph==0.17.4
-Cambia-hash==1.0.0
 importlib-metadata==7.1.0
 packaging==24.0
 pyinstaller==6.6.0
