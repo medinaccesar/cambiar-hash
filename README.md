@@ -1,4 +1,4 @@
-# cambiar-hash
+# cambiarhash
 Permite cambiar el «hash» de un archivo sin corromperlo.
 
 # Requisitos
