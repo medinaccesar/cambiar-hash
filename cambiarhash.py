@@ -2,9 +2,7 @@
 from service.fichero_service import Fichero
 from utils.espannol_string_argparse import *
 import argparse
-from utils.locale_manager import _,p
-from dotenv import load_dotenv  # type: ignore
-
+from utils.locale_manager import _
 from utils.constantes import Configuracion as conf
 from service.hash_service import HashService
 from utils.barra_progreso import BarraProgresoConsola
@@ -26,8 +24,10 @@ class CambiarHash():
         print(_('Se ejecuta en modo consola.'),'\n')
 
         if args.cambiar is not None:
+            
             barra_progreso = BarraProgresoConsola(100)
             nombre_archivo = args.cambiar
+            self._comprobar_fichero_existe(nombre_archivo)
             barra_progreso.dibujar(10)
             hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
             print(_('«Hash» del archivo:'),hash)
@@ -36,10 +36,13 @@ class CambiarHash():
             barra_progreso.dibujar(80)
             print(_('El «hash» del archivo se ha cambiado correctamente.'))
             print(_('Nuevo «hash» del archivo:'),hash_nuevo,'\n')
+            
       
         elif args.duplicar is not None:
+            
             barra_progreso = BarraProgresoConsola(100)
             nombre_archivo = args.duplicar
+            self._comprobar_fichero_existe(nombre_archivo)
             barra_progreso.dibujar(10)
             hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
             print(_('«Hash» del archivo original:'),hash)
@@ -50,16 +53,24 @@ class CambiarHash():
             barra_progreso.dibujar(70)
             print(_('Nombre del archivo duplicado:'),nombre_archivo_nuevo)
             print(_('«Hash» del archivo duplicado:'),hash_nuevo,'\n')
+            
         elif args.obtener is not None:
-            barra_progreso = BarraProgresoConsola(100)
-            barra_progreso.dibujar(10)
+            
+            barra_progreso = BarraProgresoConsola(100)            
             nombre_archivo = args.obtener
+            self._comprobar_fichero_existe(nombre_archivo)
+            barra_progreso.dibujar(10)
             hash = self._hash_service.calcular_hash_archivo(nombre_archivo)                     
             barra_progreso.dibujar(80)
             print(_('«Hash» del archivo:'),hash,'\n')
+            
         else:
             print(_('No se especificó ninguna opción'))
-           
+    
+    def _comprobar_fichero_existe(self, nombre_archivo):
+         if not self._fichero_service.existe(nombre_archivo):
+                print(_('El archivo no existe.'), '\n')
+                sys.exit(1)
    
     def _get_parser(self):
         

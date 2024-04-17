@@ -5,8 +5,8 @@ class Configuracion:
 
     __slots__ = ()
 
-    NOMBRE_AP = 'cambia-hash'
-    DESCRIPCION_APP = 'Cambia el «hash» de un archivo'
+    NOMBRE_AP = 'cambiarhash'
+    DESCRIPCION_APP = 'Permite cambiar el «hash» de un archivo sin corromperlo'
     VERSION = '1.0.0'
     CREDITOS = 'César Medina'
 
