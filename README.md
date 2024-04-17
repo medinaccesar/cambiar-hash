@@ -105,11 +105,6 @@ The application language is set in the .env file, (remane .env.template):
 IDIOMA = 'pt'
 ```
 
-# Líneas futuras
-
-1) Interfaz gráfica
-2) Aplicación móvil
-
 # Ejecutables para linux ubuntu y windows
 Se puede crear el ejecutable con «pyinstaller».
 
@@ -175,4 +170,9 @@ Progreso |███████████████████████�
 Nombre del archivo duplicado: prueba_240416_223022.pdf
 «Hash» del archivo duplicado: 3d22b297602fb4ec694d65773aa1c3872384249f2a8c2b06f5b9013ba32c2f53 
 ```
+
+# Líneas futuras
+
+1) Interfaz gráfica
+2) Aplicación móvil
 
