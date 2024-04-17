@@ -17,7 +17,7 @@ python utils/compile_lang.py
 ```
 Uso: cambiarhash.py [-h] [-c ARCHIVO | -d ARCHIVO | -o ARCHIVO | -g] [--version]
 
-cambia-hash 1.0.0
+cambiarhash 1.0.0
 
 argumentos opcionales:
   -h, --help                          muestra este mensaje de ayuda y sale
@@ -77,7 +77,7 @@ Posteriormente se compila el archivo de traducción ejecutando:
 ```
 python utils/compile_lang.py 
 ```
-El idioma de la aplicación, (distinto de español), se fija en el archivo .env:
+El idioma de la aplicación, (distinto de español), se fija en el archivo .env, (renombrar .env.template):
 ```
 IDIOMA = 'pt'
 ```
@@ -100,7 +100,7 @@ Subsequently, the translation file is compiled by executing:
 ```
 python utils/compile_lang.py 
 ```
-The application language is set in the .env file:
+The application language is set in the .env file, (remane .env.template):
 ```
 IDIOMA = 'pt'
 ```
@@ -111,11 +111,11 @@ IDIOMA = 'pt'
 2) Aplicación móvil
 
 # Ejecutables para linux ubuntu y windows
+Se puede crear el ejecutable con «pyinstaller».
 
 En la carpeta «dist» próximanente....
 
-# Uso de los ejecutables
-
+# ejemplos de uso del ejecutable
 
 * **Cambiar el «hash» de un archivo (linux):**
 ```
