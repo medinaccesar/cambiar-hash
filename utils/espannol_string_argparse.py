@@ -1,11 +1,23 @@
 import gettext 
 import os
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv() 
-localedir = 'locale'
-lang = os.getenv('IDIOMA', 'es')
 
-t = gettext.translation('programa', localedir, [lang], fallback=True)
+raiz_dir = Path('.')
+
+if getattr(sys, 'frozen', False):
+    # Si se ejecuta como un ejecutable    
+    raiz_dir = sys._MEIPASS 
+  
+locale_dir = Path(raiz_dir) / 'locale'      
+env_path = Path(raiz_dir) / '.env'
+load_dotenv(dotenv_path=env_path) 
+
+
+lang = os.getenv('IDIOMA', 'es')
+print(lang, 'Idioma')
+t = gettext.translation('programa', locale_dir, [lang], fallback=True)
 _ = t.gettext
 
 def custom_gettext(s):  
