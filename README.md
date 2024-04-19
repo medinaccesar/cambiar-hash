@@ -23,7 +23,7 @@ argumentos opcionales:
   -h, --help                          muestra este mensaje de ayuda y sale
   -c ARCHIVO, --cambiar ARCHIVO       Cambia al vuelo el «hash» del archivo
   -d ARCHIVO, --duplicar ARCHIVO      Crea un nuevo archivo pero con distinto «hash»
-  -o ARCHIVO, --obtener ARCHIVO       Calcula el «hash» del archivo
+  -m ARCHIVO, --mostrarr ARCHIVO      Calcula el «hash» del archivo
   -g, --gui                           Se ejecuta el entorno gráfico
   --version                           Muestra la versión del programa
 ```
@@ -32,8 +32,6 @@ Por ejemplo:
 * **Cambiar el «hash» de un archivo:**
 ```
 $ python cambiarhash.py -c prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo: a56274c33feed7d80606ceadf3e33b37bdc199eed519e26c0d6506404a56b18f
 Progreso |████████████████████████████████████████| 100% Completo
 El «hash» del archivo se ha cambiado correctamente.
@@ -41,17 +39,13 @@ Nuevo «hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee72
 ```
 * **Calcular el «hash» de un archivo:**
 ```
-$ python cambiarhash.py -o prueba.pdf
-Se ejecuta en modo consola. 
-
+$ python cambiarhash.py -m prueba.pdf
 Progreso |████████████████████████████████████████| 100% Completo
 «Hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2 
 ```
 * **Crea un nuevo archivo pero con distinto «hash»:**
 ```
 $ python cambiarhash.py -d prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo original: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2
 Progreso |████████████████████████████████████████| 100% Completo
 Nombre del archivo duplicado: prueba_240416_223022.pdf
@@ -115,8 +109,6 @@ En la carpeta «dist» próximanente....
 * **Cambiar el «hash» de un archivo (linux):**
 ```
 cambiarhash -c prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo: a56274c33feed7d80606ceadf3e33b37bdc199eed519e26c0d6506404a56b18f
 Progreso |████████████████████████████████████████| 100% Completo
 El «hash» del archivo se ha cambiado correctamente.
@@ -126,8 +118,6 @@ Nuevo «hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee72
 * **Cambiar el «hash» de un archivo (win):**
 ```
 cambiarhash.exe -c prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo: a56274c33feed7d80606ceadf3e33b37bdc199eed519e26c0d6506404a56b18f
 Progreso |████████████████████████████████████████| 100% Completo
 El «hash» del archivo se ha cambiado correctamente.
@@ -135,17 +125,13 @@ Nuevo «hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee72
 ```
 * **Calcular el «hash» de un archivo (linux):**
 ```
-cambiarhash -o prueba.pdf
-Se ejecuta en modo consola. 
-
+cambiarhash -m prueba.pdf
 Progreso |████████████████████████████████████████| 100% Completo
 «Hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2 
 ```
 * **Calcular el «hash» de un archivo (win):**
 ```
-cambiarhash.exe -o prueba.pdf
-Se ejecuta en modo consola. 
-
+cambiarhash.exe -m prueba.pdf
 Progreso |████████████████████████████████████████| 100% Completo
 «Hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2 
 ```
@@ -153,8 +139,6 @@ Progreso |███████████████████████�
 * **Crea un nuevo archivo pero con distinto «hash» (linux):**
 ```
 cambiarhash -d prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo original: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2
 Progreso |████████████████████████████████████████| 100% Completo
 Nombre del archivo duplicado: prueba_240416_223022.pdf
@@ -163,8 +147,6 @@ Nombre del archivo duplicado: prueba_240416_223022.pdf
 * **Crea un nuevo archivo pero con distinto «hash» (win):**
 ```
 cambiarhash.exe -d prueba.pdf
-Se ejecuta en modo consola. 
-
 «Hash» del archivo original: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2
 Progreso |████████████████████████████████████████| 100% Completo
 Nombre del archivo duplicado: prueba_240416_223022.pdf
