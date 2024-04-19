@@ -16,7 +16,7 @@ load_dotenv(dotenv_path=env_path)
 
 
 lang = os.getenv('IDIOMA', 'es')
-print(lang, 'Idioma')
+
 t = gettext.translation('programa', locale_dir, [lang], fallback=True)
 _ = t.gettext
 

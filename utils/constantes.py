@@ -8,9 +8,10 @@ class Configuracion:
     NOMBRE_AP = 'cambiarhash'
     DESCRIPCION_APP = 'Permite cambiar el «hash» de un archivo sin corromperlo'
     VERSION = '1.0.0'
-    CREDITOS = 'César Medina'
-
-  
+    AUTOR = 'César Medina'
+    ANNO = '2024'
+    CREDITOS = AUTOR + ' - ' + ANNO 
+      
     # Directorios
     DIR_DOCUMENTOS = os.path.expanduser("~")
     DIR_ABS = os.path.dirname(os.path.abspath(__file__))+os.path.sep   
