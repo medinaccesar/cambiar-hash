@@ -23,7 +23,7 @@ argumentos opcionales:
   -h, --help                          muestra este mensaje de ayuda y sale
   -c ARCHIVO, --cambiar ARCHIVO       Cambia al vuelo el «hash» del archivo
   -d ARCHIVO, --duplicar ARCHIVO      Crea un nuevo archivo pero con distinto «hash»
-  -m ARCHIVO, --mostrarr ARCHIVO      Calcula el «hash» del archivo
+  -m ARCHIVO, --mostrar ARCHIVO      Calcula el «hash» del archivo
   -g, --gui                           Se ejecuta el entorno gráfico
   --version                           Muestra la versión del programa
 ```
