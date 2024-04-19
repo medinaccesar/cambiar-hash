@@ -100,11 +100,11 @@ IDIOMA = 'pt'
 ```
 
 # Ejecutables para linux ubuntu y windows
+Se encuentran en la carpeta «dist».
+
 Se puede crear el ejecutable con «pyinstaller».
 
-En la carpeta «dist» próximanente....
-
-# ejemplos de uso del ejecutable
+# Ejemplos de uso del ejecutable
 
 * **Cambiar el «hash» de un archivo (linux):**
 ```
