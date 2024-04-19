@@ -31,7 +31,7 @@ class CambiarHash():
             
         elif args.mostrar is not None:          
            
-            self._mostrar_info_archivo(args.mostrar) 
+            self._mostrar_hash_archivo(args.mostrar) 
             
         elif args.acerca is not None:          
            
