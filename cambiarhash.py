@@ -26,14 +26,13 @@ class CambiarHash():
       
         elif args.duplicar is not None:
                        
-            self._duplicar_archivo(args.duplicar) 
-            
+            self._duplicar_archivo(args.duplicar)             
             
         elif args.mostrar is not None:          
            
             self._mostrar_hash_archivo(args.mostrar) 
             
-        elif args.acerca is not None:          
+        elif args.acerca is not False:          
            
             self._acerca_de() 
                            
