@@ -7,7 +7,7 @@ class Configuracion:
 
     NOMBRE_AP = 'cambiarhash'
     DESCRIPCION_APP = 'Permite cambiar el «hash» de un archivo sin corromperlo'
-    VERSION = '1.0.0'
+    VERSION = '1.0.1'
     AUTOR = 'César Medina'
     ANNO = '2024'
     CREDITOS = AUTOR + ' - ' + ANNO 
