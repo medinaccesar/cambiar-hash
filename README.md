@@ -17,7 +17,7 @@ python utils/compile_lang.py
 ```
 Uso: cambiarhash.py [-h] [-c ARCHIVO | -d ARCHIVO | -o ARCHIVO | -g] [--version]
 
-cambiarhash 1.0.0
+cambiarhash 1.0.1
 
 argumentos opcionales:
   -h, --help                          muestra este mensaje de ayuda y sale
@@ -55,7 +55,7 @@ Nombre del archivo duplicado: prueba_240416_223022.pdf
 Se puede usar como base ./locale/programa.po y con «poedit» u otro editor rellenar las traducciones.  El archivo se coloca dentro de la carpeta correspondiente, por ejemplo para portugués en ./locale/pt/LL_MESSAGES/:
 
 ```
-cifra-descifra/
+cambiar-hash/
 ├─ README.md
 ├─ cambiarhash.py
 ├─ ...
@@ -78,7 +78,7 @@ IDIOMA = 'pt'
 
 [EN] You can use as a base ./locale/programa.po and with "poedit" or another editor fill in the translations.  The file is placed inside the corresponding folder, for example for Portuguese in ./locale/pt/LL_MESSAGES/:
 ```
-cifra-descifra/
+cambiar-hash/
 ├─ README.md
 ├─ cambiarhash.py
 ├─ ...
