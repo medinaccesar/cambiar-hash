@@ -13,8 +13,7 @@ def compile_po_files():
                 #lang = os.path.splitext(po_file)[1][1:]
                 print('Se compila',root)
                 mo_file = po_file.replace('.po', '.mo')
-                msgfmt_cmd = f'msgfmt {po_file} -o {mo_file}'
-                subprocess.call(msgfmt_cmd, shell=True)   
+                subprocess.call(['msgfmt', po_file, '-o', mo_file])
 
 if __name__ == "__main__":
    
