@@ -15,7 +15,8 @@ python utils/compile_lang.py
 ```
 # Uso
 ```
-Uso: cambiarhash.py [-h] [-c ARCHIVO | -d ARCHIVO | -o ARCHIVO | -g] [--version]
+Uso: cambiarhash.py [-h] [-c ARCHIVO | -d ARCHIVO | -m ARCHIVO | -g] [-b N]
+                    [-a] [--version]
 
 cambiarhash 1.0.1
 
@@ -25,6 +26,8 @@ argumentos opcionales:
   -d ARCHIVO, --duplicar ARCHIVO      Crea un nuevo archivo pero con distinto «hash»
   -m ARCHIVO, --mostrar ARCHIVO      Calcula el «hash» del archivo
   -g, --gui                           Se ejecuta el entorno gráfico
+  -b N, --bytes N                     Número de octetos que se añaden para cambiar el «hash» (por defecto: 1). Se usa junto a -c o -d
+  -a, --aleatorio                     Usa octetos aleatorios en lugar de nulos. Se usa junto a -c o -d
   --version                           Muestra la versión del programa
 ```
 Por ejemplo:

@@ -46,11 +46,11 @@ class HashService():
         return hasher.hexdigest()
     
    
-    def cambiar_hash_archivo(self, ruta_archivo, n_bytes =1):
+    def cambiar_hash_archivo(self, ruta_archivo, n_bytes=1, aleatorio=False):
 
-        tamanno = os.path.getsize(ruta_archivo)        
-        nuevo_tamanno = tamanno + n_bytes
-        # Recorta el archivo al tamaño nuevo añadiendo octetos NULOS al final  
-        os.truncate(ruta_archivo, nuevo_tamanno)
+        # Añade octetos al final del archivo.
+        relleno = os.urandom(n_bytes) if aleatorio else bytes(n_bytes)
+        with open(ruta_archivo, 'ab') as f:
+            f.write(relleno)
     
   

@@ -119,6 +119,22 @@ msgstr "at least one value is expected for the parameter"
 msgid "No se ha podido procesar el archivo:"
 msgstr "The file could not be processed:"
 
+#: cambiarhash.py:103
+msgid "El número de octetos debe ser mayor o igual a 1."
+msgstr "The number of bytes must be greater than or equal to 1."
+
+#: cambiarhash.py:130
+msgid "N"
+msgstr "N"
+
+#: cambiarhash.py:130
+msgid "Número de octetos que se añaden para cambiar el «hash» del archivo (por defecto: 1). Se usa junto a -c o -d"
+msgstr "Number of bytes appended to change the file's hash (default: 1). Used together with -c or -d"
+
+#: cambiarhash.py:132
+msgid "Usa octetos aleatorios en lugar de nulos al cambiar el «hash» del archivo. Se usa junto a -c o -d"
+msgstr "Uses random bytes instead of null bytes when changing the file's hash. Used together with -c or -d"
+
 #: utils/gestor_errores.py:10
 msgid "No tiene permisos suficientes para acceder al archivo."
 msgstr "You do not have sufficient permissions to access the file."

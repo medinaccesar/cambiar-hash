@@ -24,14 +24,14 @@ class CambiarHash():
     def _ejecutar_modo_consola(self, args):   
 
         if args.cambiar is not None:
-           
-            self._cambiar_hash_archivo(args.cambiar)   
-      
+
+            self._cambiar_hash_archivo(args.cambiar, args.bytes, args.aleatorio)
+
         elif args.duplicar is not None:
-                       
-            self._duplicar_archivo(args.duplicar)             
-            
-        elif args.mostrar is not None:          
+
+            self._duplicar_archivo(args.duplicar, args.bytes, args.aleatorio)
+
+        elif args.mostrar is not None:
            
             self._mostrar_hash_archivo(args.mostrar) 
             
@@ -43,15 +43,16 @@ class CambiarHash():
             print(_('No se especificó ninguna opción'))
     
     
-    def _cambiar_hash_archivo(self, nombre_archivo):
+    def _cambiar_hash_archivo(self, nombre_archivo, n_bytes, aleatorio):
 
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
+        self._comprobar_bytes_validos(n_bytes)
         barra_progreso.dibujar(10)
         try:
             hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
             print(_('«Hash» del archivo:'),hash)
-            self._hash_service.cambiar_hash_archivo(nombre_archivo)
+            self._hash_service.cambiar_hash_archivo(nombre_archivo, n_bytes, aleatorio)
             hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo)
         except OSError as error:
             self._manejar_error(error)
@@ -59,16 +60,17 @@ class CambiarHash():
         print(_('El «hash» del archivo se ha cambiado correctamente.'))
         print(_('Nuevo «hash» del archivo:'),hash_nuevo,'\n')
 
-    def _duplicar_archivo(self, nombre_archivo):
+    def _duplicar_archivo(self, nombre_archivo, n_bytes, aleatorio):
 
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
+        self._comprobar_bytes_validos(n_bytes)
         barra_progreso.dibujar(10)
         try:
             hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
             print(_('«Hash» del archivo original:'),hash)
             nombre_archivo_nuevo = self._fichero_service.crear_copia(nombre_archivo)
-            self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo)
+            self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo, n_bytes, aleatorio)
             barra_progreso.dibujar(10)
             hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo_nuevo)
         except OSError as error:
@@ -95,6 +97,12 @@ class CambiarHash():
             print(_('El archivo no existe.'), '\n')
             sys.exit(1)
 
+    def _comprobar_bytes_validos(self, n_bytes):
+
+        if n_bytes < 1:
+            print(_('El número de octetos debe ser mayor o igual a 1.'), '\n')
+            sys.exit(1)
+
     def _manejar_error(self, error):
         print(self._gestor_errores.obtener_mensaje(error), '\n')
         sys.exit(1)
@@ -118,6 +126,10 @@ class CambiarHash():
                            metavar=(_('ARCHIVO')), help=_('Muestra el «hash» del archivo'))        
         group.add_argument('-g', '--gui', action='store_true',
                            help=_('Se ejecuta el entorno gráfico'))
+        parser.add_argument('-b', '--bytes', type=int, default=1,
+                           metavar=(_('N')), help=_('Número de octetos que se añaden para cambiar el «hash» del archivo (por defecto: 1). Se usa junto a -c o -d'))
+        parser.add_argument('-a', '--aleatorio', action='store_true',
+                           help=_('Usa octetos aleatorios en lugar de nulos al cambiar el «hash» del archivo. Se usa junto a -c o -d'))
         parser.add_argument('--version', action='version', version='%(prog)s ' +
                             conf.VERSION, help=_('Muestra la versión del programa'))
         parser.add_argument("--acerca", action='store_true', help=argparse.SUPPRESS)
