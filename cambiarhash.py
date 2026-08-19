@@ -1,4 +1,5 @@
 
+import sys
 from service.fichero_service import Fichero
 from utils.espannol_string_argparse import *
 import argparse
@@ -6,16 +7,18 @@ from utils.locale_manager import _
 from utils.constantes import Configuracion as conf
 from service.hash_service import HashService
 from utils.barra_progreso import BarraProgresoConsola
+from utils.gestor_errores import GestorErrores
 
 class CambiarHash():
 
     def __init__(self):               
    
-        self._hash_service = HashService()       
-        self._fichero_service = Fichero()       
-           
-        parser = self._get_parser()       
-        self._procesar_argumentos(parser)   
+        self._hash_service = HashService()
+        self._fichero_service = Fichero()
+        self._gestor_errores = GestorErrores()
+
+        parser = self._get_parser()
+        self._procesar_argumentos(parser)
 
     # Se ejecuta en modo consola
     def _ejecutar_modo_consola(self, args):   
@@ -40,48 +43,61 @@ class CambiarHash():
             print(_('No se especificó ninguna opción'))
     
     
-    def _cambiar_hash_archivo(self, nombre_archivo): 
-               
-        barra_progreso = BarraProgresoConsola(100)        
-        self._comprobar_fichero_existe(nombre_archivo)
-        barra_progreso.dibujar(10)
-        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
-        print(_('«Hash» del archivo:'),hash)
-        self._hash_service.cambiar_hash_archivo(nombre_archivo)
-        hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo)
-        barra_progreso.dibujar(80)
-        print(_('El «hash» del archivo se ha cambiado correctamente.'))
-        print(_('Nuevo «hash» del archivo:'),hash_nuevo,'\n')
-        
-    def _duplicar_archivo(self, nombre_archivo):
-        
-        barra_progreso = BarraProgresoConsola(100)            
-        self._comprobar_fichero_existe(nombre_archivo)
-        barra_progreso.dibujar(10)
-        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
-        print(_('«Hash» del archivo original:'),hash)
-        nombre_archivo_nuevo = self._fichero_service.crear_copia(nombre_archivo)
-        self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo)
-        barra_progreso.dibujar(10)
-        hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo_nuevo)         
-        barra_progreso.dibujar(70)
-        print(_('Nombre del archivo duplicado:'),nombre_archivo_nuevo)
-        print(_('«Hash» del archivo duplicado:'),hash_nuevo,'\n')
-        
-    def _mostrar_hash_archivo(self, nombre_archivo):
-        
+    def _cambiar_hash_archivo(self, nombre_archivo):
+
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
         barra_progreso.dibujar(10)
-        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)                     
+        try:
+            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
+            print(_('«Hash» del archivo:'),hash)
+            self._hash_service.cambiar_hash_archivo(nombre_archivo)
+            hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo)
+        except OSError as error:
+            self._manejar_error(error)
+        barra_progreso.dibujar(80)
+        print(_('El «hash» del archivo se ha cambiado correctamente.'))
+        print(_('Nuevo «hash» del archivo:'),hash_nuevo,'\n')
+
+    def _duplicar_archivo(self, nombre_archivo):
+
+        barra_progreso = BarraProgresoConsola(100)
+        self._comprobar_fichero_existe(nombre_archivo)
+        barra_progreso.dibujar(10)
+        try:
+            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
+            print(_('«Hash» del archivo original:'),hash)
+            nombre_archivo_nuevo = self._fichero_service.crear_copia(nombre_archivo)
+            self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo)
+            barra_progreso.dibujar(10)
+            hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo_nuevo)
+        except OSError as error:
+            self._manejar_error(error)
+        barra_progreso.dibujar(70)
+        print(_('Nombre del archivo duplicado:'),nombre_archivo_nuevo)
+        print(_('«Hash» del archivo duplicado:'),hash_nuevo,'\n')
+
+    def _mostrar_hash_archivo(self, nombre_archivo):
+
+        barra_progreso = BarraProgresoConsola(100)
+        self._comprobar_fichero_existe(nombre_archivo)
+        barra_progreso.dibujar(10)
+        try:
+            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
+        except OSError as error:
+            self._manejar_error(error)
         barra_progreso.dibujar(80)
         print(_('«Hash» del archivo:'),hash,'\n')
-        
+
     def _comprobar_fichero_existe(self, nombre_archivo):
-        
+
         if not self._fichero_service.existe(nombre_archivo):
             print(_('El archivo no existe.'), '\n')
             sys.exit(1)
+
+    def _manejar_error(self, error):
+        print(self._gestor_errores.obtener_mensaje(error), '\n')
+        sys.exit(1)
             
     def _acerca_de(self):      
         print(conf.NOMBRE_AP,'v'+conf.VERSION)        

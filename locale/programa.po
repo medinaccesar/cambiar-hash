@@ -114,3 +114,15 @@ msgstr "a value is expected for the parameter"
 #: utils/espannol_string_argparse.py:20
 msgid "se espera al menos un valor para el parámetro"
 msgstr "at least one value is expected for the parameter"
+
+#: utils/gestor_errores.py:18
+msgid "No se ha podido procesar el archivo:"
+msgstr "The file could not be processed:"
+
+#: utils/gestor_errores.py:10
+msgid "No tiene permisos suficientes para acceder al archivo."
+msgstr "You do not have sufficient permissions to access the file."
+
+#: utils/gestor_errores.py:11
+msgid "No hay espacio suficiente en el disco."
+msgstr "There is not enough space on disk."
