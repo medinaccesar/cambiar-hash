@@ -15,20 +15,21 @@ python utils/compile_lang.py
 ```
 # Uso
 ```
-Uso: cambiarhash.py [-h] [-c ARCHIVO | -d ARCHIVO | -m ARCHIVO | -g] [-b N]
-                    [-a] [--version]
+Uso: cambiarhash.py [-h]
+                    [-c ARCHIVO [ARCHIVO ...] | -d ARCHIVO [ARCHIVO ...] | -m ARCHIVO [ARCHIVO ...] | -g]
+                    [-b N] [-a] [--version]
 
 cambiarhash 1.0.1
 
 argumentos opcionales:
-  -h, --help                          muestra este mensaje de ayuda y sale
-  -c ARCHIVO, --cambiar ARCHIVO       Cambia al vuelo el «hash» del archivo
-  -d ARCHIVO, --duplicar ARCHIVO      Crea un nuevo archivo pero con distinto «hash»
-  -m ARCHIVO, --mostrar ARCHIVO      Calcula el «hash» del archivo
-  -g, --gui                           Se ejecuta el entorno gráfico
-  -b N, --bytes N                     Número de octetos que se añaden para cambiar el «hash» (por defecto: 1). Se usa junto a -c o -d
-  -a, --aleatorio                     Usa octetos aleatorios en lugar de nulos. Se usa junto a -c o -d
-  --version                           Muestra la versión del programa
+  -h, --help                                    muestra este mensaje de ayuda y sale
+  -c ARCHIVO [ARCHIVO ...], --cambiar ARCHIVO [ARCHIVO ...]     Cambia al vuelo el «hash» de uno o varios archivos
+  -d ARCHIVO [ARCHIVO ...], --duplicar ARCHIVO [ARCHIVO ...]    Crea copias de uno o varios archivos con distinto «hash»
+  -m ARCHIVO [ARCHIVO ...], --mostrar ARCHIVO [ARCHIVO ...]     Muestra el «hash» de uno o varios archivos
+  -g, --gui                                     Se ejecuta el entorno gráfico
+  -b N, --bytes N                               Número de octetos que se añaden para cambiar el «hash» (por defecto: 1). Se usa junto a -c o -d
+  -a, --aleatorio                               Usa octetos aleatorios en lugar de nulos. Se usa junto a -c o -d
+  --version                                     Muestra la versión del programa
 ```
 Por ejemplo:
 
@@ -40,6 +41,13 @@ Progreso |███████████████████████�
 El «hash» del archivo se ha cambiado correctamente.
 Nuevo «hash» del archivo: eab62c3db3e25b3229c39d2059449d51b93fda9962811b20ee727abe64a4d1e2 
 ```
+* **Cambiar el «hash» de varios archivos (lote):**
+```
+$ python cambiarhash.py -c prueba1.pdf prueba2.pdf prueba3.pdf
+...
+Resumen: 3 de 3 archivo(s) procesado(s) correctamente.
+```
+Si algún archivo del lote falla (no existe, sin permisos, etc.) se muestra su error y se continúa con el resto; el programa termina con código de salida distinto de cero si hubo algún fallo.
 * **Calcular el «hash» de un archivo:**
 ```
 $ python cambiarhash.py -m prueba.pdf

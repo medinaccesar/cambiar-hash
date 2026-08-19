@@ -43,69 +43,90 @@ class CambiarHash():
             print(_('No se especificó ninguna opción'))
     
     
-    def _cambiar_hash_archivo(self, nombre_archivo, n_bytes, aleatorio):
+    def _cambiar_hash_archivo(self, nombres_archivo, n_bytes, aleatorio):
+
+        self._comprobar_bytes_validos(n_bytes)
+        self._procesar_lote(nombres_archivo,
+                             lambda nombre_archivo: self._cambiar_hash_de_un_archivo(nombre_archivo, n_bytes, aleatorio))
+
+    def _cambiar_hash_de_un_archivo(self, nombre_archivo, n_bytes, aleatorio):
 
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
-        self._comprobar_bytes_validos(n_bytes)
         barra_progreso.dibujar(10)
-        try:
-            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
-            print(_('«Hash» del archivo:'),hash)
-            self._hash_service.cambiar_hash_archivo(nombre_archivo, n_bytes, aleatorio)
-            hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo)
-        except OSError as error:
-            self._manejar_error(error)
+        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
+        print(_('«Hash» del archivo:'),hash)
+        self._hash_service.cambiar_hash_archivo(nombre_archivo, n_bytes, aleatorio)
+        hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo)
         barra_progreso.dibujar(80)
         print(_('El «hash» del archivo se ha cambiado correctamente.'))
         print(_('Nuevo «hash» del archivo:'),hash_nuevo,'\n')
 
-    def _duplicar_archivo(self, nombre_archivo, n_bytes, aleatorio):
+    def _duplicar_archivo(self, nombres_archivo, n_bytes, aleatorio):
+
+        self._comprobar_bytes_validos(n_bytes)
+        self._procesar_lote(nombres_archivo,
+                             lambda nombre_archivo: self._duplicar_un_archivo(nombre_archivo, n_bytes, aleatorio))
+
+    def _duplicar_un_archivo(self, nombre_archivo, n_bytes, aleatorio):
 
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
-        self._comprobar_bytes_validos(n_bytes)
         barra_progreso.dibujar(10)
-        try:
-            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
-            print(_('«Hash» del archivo original:'),hash)
-            nombre_archivo_nuevo = self._fichero_service.crear_copia(nombre_archivo)
-            self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo, n_bytes, aleatorio)
-            barra_progreso.dibujar(10)
-            hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo_nuevo)
-        except OSError as error:
-            self._manejar_error(error)
+        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
+        print(_('«Hash» del archivo original:'),hash)
+        nombre_archivo_nuevo = self._fichero_service.crear_copia(nombre_archivo)
+        self._hash_service.cambiar_hash_archivo(nombre_archivo_nuevo, n_bytes, aleatorio)
+        barra_progreso.dibujar(10)
+        hash_nuevo = self._hash_service.calcular_hash_archivo(nombre_archivo_nuevo)
         barra_progreso.dibujar(70)
         print(_('Nombre del archivo duplicado:'),nombre_archivo_nuevo)
         print(_('«Hash» del archivo duplicado:'),hash_nuevo,'\n')
 
-    def _mostrar_hash_archivo(self, nombre_archivo):
+    def _mostrar_hash_archivo(self, nombres_archivo):
+
+        self._procesar_lote(nombres_archivo, self._mostrar_hash_de_un_archivo)
+
+    def _mostrar_hash_de_un_archivo(self, nombre_archivo):
 
         barra_progreso = BarraProgresoConsola(100)
         self._comprobar_fichero_existe(nombre_archivo)
         barra_progreso.dibujar(10)
-        try:
-            hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
-        except OSError as error:
-            self._manejar_error(error)
+        hash = self._hash_service.calcular_hash_archivo(nombre_archivo)
         barra_progreso.dibujar(80)
         print(_('«Hash» del archivo:'),hash,'\n')
+
+    def _procesar_lote(self, nombres_archivo, accion):
+
+        fallos = 0
+        for nombre_archivo in nombres_archivo:
+            try:
+                accion(nombre_archivo)
+            except OSError as error:
+                print(self._gestor_errores.obtener_mensaje(error), '\n')
+                fallos += 1
+        self._mostrar_resumen_lote(len(nombres_archivo), fallos)
+        if fallos:
+            sys.exit(1)
+
+    def _mostrar_resumen_lote(self, total, fallos):
+
+        if total <= 1:
+            return
+        exitos = total - fallos
+        print(_('Resumen: %(exitos)d de %(total)d archivo(s) procesado(s) correctamente.') %
+              {'exitos': exitos, 'total': total})
 
     def _comprobar_fichero_existe(self, nombre_archivo):
 
         if not self._fichero_service.existe(nombre_archivo):
-            print(_('El archivo no existe.'), '\n')
-            sys.exit(1)
+            raise FileNotFoundError(nombre_archivo)
 
     def _comprobar_bytes_validos(self, n_bytes):
 
         if n_bytes < 1:
             print(_('El número de octetos debe ser mayor o igual a 1.'), '\n')
             sys.exit(1)
-
-    def _manejar_error(self, error):
-        print(self._gestor_errores.obtener_mensaje(error), '\n')
-        sys.exit(1)
             
     def _acerca_de(self):      
         print(conf.NOMBRE_AP,'v'+conf.VERSION)        
@@ -118,12 +139,12 @@ class CambiarHash():
         parser = argparse.ArgumentParser(
             description=conf.NOMBRE_AP+" "+str(conf.VERSION) ) 
         group = parser.add_mutually_exclusive_group()
-        group.add_argument('-c', '--cambiar', type=str,
-                           metavar=(_('ARCHIVO')), help=_('Cambia al vuelo el «hash» del archivo'))       
-        group.add_argument('-d', '--duplicar', type=str,
-                           metavar=(_('ARCHIVO')), help=_('Crea un nuevo archivo pero con distinto «hash»'))  
-        group.add_argument('-m', '--mostrar', type=str,
-                           metavar=(_('ARCHIVO')), help=_('Muestra el «hash» del archivo'))        
+        group.add_argument('-c', '--cambiar', nargs='+',
+                           metavar=(_('ARCHIVO')), help=_('Cambia al vuelo el «hash» de uno o varios archivos'))
+        group.add_argument('-d', '--duplicar', nargs='+',
+                           metavar=(_('ARCHIVO')), help=_('Crea copias de uno o varios archivos con distinto «hash»'))
+        group.add_argument('-m', '--mostrar', nargs='+',
+                           metavar=(_('ARCHIVO')), help=_('Muestra el «hash» de uno o varios archivos'))
         group.add_argument('-g', '--gui', action='store_true',
                            help=_('Se ejecuta el entorno gráfico'))
         parser.add_argument('-b', '--bytes', type=int, default=1,

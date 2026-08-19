@@ -54,17 +54,17 @@ msgstr "No option was specified"
 msgid "ARCHIVO"
 msgstr "FILE"
 
-#: cambiarhash.py:70 
-msgid "Cambia al vuelo el «hash» del archivo"
-msgstr "Changes the hash of the file on the fly"
+#: cambiarhash.py:70
+msgid "Cambia al vuelo el «hash» de uno o varios archivos"
+msgstr "Changes the hash of one or more files on the fly"
 
-#: cambiarhash.py:72 
-msgid "Crea un nuevo archivo pero con distinto «hash»"
-msgstr "Creates a new file but with a different hash"
+#: cambiarhash.py:72
+msgid "Crea copias de uno o varios archivos con distinto «hash»"
+msgstr "Creates copies of one or more files with a different hash"
 
-#: cambiarhash.py:74 
-msgid "Calcula el «hash» del archivo"
-msgstr "Calculates the hash of the file"
+#: cambiarhash.py:74
+msgid "Muestra el «hash» de uno o varios archivos"
+msgstr "Shows the hash of one or more files"
 
 #: cambiarhash.py:76
 msgid "Se ejecuta el entorno gráfico"
@@ -142,3 +142,12 @@ msgstr "You do not have sufficient permissions to access the file."
 #: utils/gestor_errores.py:11
 msgid "No hay espacio suficiente en el disco."
 msgstr "There is not enough space on disk."
+
+#: utils/gestor_errores.py:9
+msgid "El archivo no existe."
+msgstr "The file does not exist."
+
+#: cambiarhash.py:76
+#, python-format
+msgid "Resumen: %(exitos)d de %(total)d archivo(s) procesado(s) correctamente."
+msgstr "Summary: %(exitos)d of %(total)d file(s) processed successfully."
